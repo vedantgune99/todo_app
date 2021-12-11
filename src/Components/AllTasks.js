@@ -1,15 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, ListGroup } from "react-bootstrap";
+import { Container, Badge, ListGroup } from "react-bootstrap";
 
-const AddTask = () => {
+const AllTask = (props) => {
   return (
-    <Container className="my-3 w-75">
-      <ListGroup>
-        <ListGroup.Item className="py-3">Task 1</ListGroup.Item>
-        <ListGroup.Item className="py-3">Task 2</ListGroup.Item>
-        <ListGroup.Item className="py-3">Task 3</ListGroup.Item>
-      </ListGroup>
+    <Container className="my-3 py-3 px-2 w-75 border border-dark rounded">
+      {props.tasks.map((task) => {
+        return (
+          <ListGroup>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start py-3 my-2 px-3">
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{task.title}</div>
+                {task.desc}
+              </div>
+              <Badge bg="danger">X</Badge>
+            </ListGroup.Item>
+          </ListGroup>
+        );
+      })}
     </Container>
   );
 };
-export default AddTask;
+export default AllTask;

@@ -6,7 +6,8 @@ const AddTask = (props) => {
   const todoItemName = useRef("");
   const todoItemDescription = useRef("");
 
-  const submitFormHandler = () => {
+  const submitFormHandler = (event) => {
+    event.preventDefault();
     props.onAddItem({
       id: Math.random() * 100,
       title: todoItemName.current.value,

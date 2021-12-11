@@ -1,6 +1,7 @@
 import NavBar from "./Components/NavBar";
 import AddTask from "./Components/AddTask";
 import AllTasks from "./Components/AllTasks";
+import { useState } from "react";
 
 const TasksData = [
   {
@@ -16,12 +17,26 @@ const TasksData = [
 ];
 
 function App() {
+  const [tasksData, setTasksData] = useState(TasksData);
+  const addItemHandler = (item) => {
+    setTasksData((prevData) => [...prevData, item]);
+    console.log(tasksData);
+  };
+
+  const removeTaskItemHandler = (taskItem) => {
+    console.log(taskItem);
+    const updatedTasksData = tasksData.filter(
+      (item) => taskItem !== item.title
+    );
+    setTasksData(updatedTasksData);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <NavBar />
-        <AddTask />
-        <AllTasks tasks={TasksData} />
+        <AddTask onAddItem={addItemHandler} />
+        <AllTasks onRemoveTask={removeTaskItemHandler} tasks={tasksData} />
       </header>
     </div>
   );

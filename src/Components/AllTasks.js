@@ -1,22 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Badge, ListGroup } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
+import TaskItem from "./TaskItem";
 
 const AllTask = (props) => {
+  const removeItem = (taskItem) => {
+    props.onRemoveTask(taskItem);
+  };
   return (
     <Container className="my-3 py-3 px-2 w-75 border border-dark rounded">
-      {props.tasks.map((task) => {
-        return (
-          <ListGroup>
-            <ListGroup.Item className="d-flex justify-content-between align-items-start py-3 my-2 px-3">
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">{task.title}</div>
-                {task.desc}
-              </div>
-              <Badge bg="danger">X</Badge>
-            </ListGroup.Item>
-          </ListGroup>
-        );
-      })}
+      <ListGroup>
+        {props.tasks.map((todo) => {
+          return (
+            <TaskItem
+              onRemoveItem={removeItem}
+              key={todo.id}
+              title={todo.title}
+              desc={todo.desc}
+            />
+          );
+        })}
+      </ListGroup>
     </Container>
   );
 };

@@ -7,6 +7,7 @@ const AddTask = (props) => {
   const [todoItemName, setTodoItemName] = useState("");
   const [todoItemDescription, setTodoItemDescription] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [addTodoItem, setAddTodoItem] = useState(false);
 
   const taskInputHandler = (event) => {
     setTodoItemName(event.target.value);
@@ -28,6 +29,9 @@ const AddTask = (props) => {
       title: todoItemName,
       desc: todoItemDescription,
     });
+    setTodoItemName("");
+    setTodoItemDescription("");
+    setAddTodoItem(true);
   };
 
   const hideModalHandler = (value) => {
@@ -63,11 +67,19 @@ const AddTask = (props) => {
               placeholder="Brief Description... "
             />
           </Form.Group>
-          {showModal && <ModalAlert onShowModal={hideModalHandler} />}
+          {showModal && (
+            <ModalAlert
+              title={"Invalid TODO!"}
+              body={"Please enter a valid todo item."}
+              buttonText={"Close"}
+              onShowModal={hideModalHandler}
+            />
+          )}
           <Button type="submit" className="px-5 py-2 mt-2">
             Add Task
           </Button>
         </Form>
+        {addTodoItem && <p className="text-center w-100">Todo added!</p>}
       </Container>
     </>
   );

@@ -11,11 +11,11 @@ const ModalAlert = (props) => {
   return (
     <Modal show>
       <ModalHeader>
-        <ModalTitle>Invalid TODO Item!</ModalTitle>
+        <ModalTitle>{props.title}</ModalTitle>
       </ModalHeader>
-      <ModalBody>Please enter valid todo item!</ModalBody>
+      <ModalBody>{props.body}</ModalBody>
       <ModalFooter>
-        <Button onClick={hideModalHandler}>Close Modal</Button>
+        <Button onClick={hideModalHandler}>{props.buttonText}</Button>
       </ModalFooter>
     </Modal>
   );

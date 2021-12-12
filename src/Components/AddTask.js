@@ -47,7 +47,7 @@ const AddTask = (props) => {
               className="input-bg red"
               onChange={taskInputHandler}
               value={todoItemName}
-              placeholder="title of todo item."
+              placeholder="Title"
             />
           </Form.Group>
 
@@ -60,7 +60,7 @@ const AddTask = (props) => {
               rows={3}
               onChange={descInputHandler}
               value={todoItemDescription}
-              placeholder="A Brief Description..."
+              placeholder="Brief Description... "
             />
           </Form.Group>
           {showModal && <ModalAlert onShowModal={hideModalHandler} />}
